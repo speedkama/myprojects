@@ -1,0 +1,61 @@
+<style>
+    a:link,
+    a:visited
+    {
+        color: #0398CA;
+    }
+
+    span#zf-name
+    {
+        color: #91BE3F;
+    }
+
+    div#welcome
+    {
+        margin: 0 auto;
+        padding: 0;
+        color: #FFFFFF;
+        background-image: url(http://framework.zend.com/images/bkg_header.jpg);
+        width:  1200px;
+        border: 2px solid #444444;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    div#more-information
+    {
+        background-image: url(http://framework.zend.com/images/bkg_body-bottom.gif);
+        height: 100%;
+    }
+</style>
+<?php
+    $this->title = "Albums";
+    $this->headTitle($this->title);
+    
+?>
+<div id="welcome">
+<p><a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'add')); ?>">Add a new album</a></p>
+    <div id="more-information">
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Artist</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+        <tbody>
+        <?php foreach($this->albums as $album): ?>
+            <tr>
+                <td><?php echo $this->escape($album->title);?></td>
+                <td><?php echo $this->escape($album->artist);?></td>
+                <td>
+                    <a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'edit', 'id'=>$album->id));?>">Edit</a>
+                    <a href="<?php echo $this->url(array('controller'=>'index', 'action'=>'delete', 'id'=>$album->id));?>">Delete</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+        </table>
+    </div>
+</div>
